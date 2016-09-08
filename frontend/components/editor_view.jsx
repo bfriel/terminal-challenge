@@ -1,34 +1,42 @@
 import React from 'react';
 import QuestionForm from './question_form';
+import QuestionItem from './question_item';
+import QuestionActions from '../actions/question_actions.js';
 
 class EditorView extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {
-      creatingQuestion: false
-    };
-    this._switchCreator = this._switchCreator.bind(this);
-  }
-
-  _switchCreator() {
-    this.setState({
-      creatingQuestion: !this.state.creatingQuestion
-    });
   }
 
   getQuestionCreator() {
     let creator;
-    if (this.state.creatingQuestion === false) {
-      creator = <a className="button" onClick={this._switchCreator}>Create a Question</a>;
+    if (this.props.creating === false) {
+      creator = <a className="button" onClick={QuestionActions.toggleCreate}>Create a Question</a>;
     } else {
       creator = <QuestionForm />;
     }
     return creator;
   }
 
+  getQuizIndex() {
+    let count = 0;
+    let quizIndex = this.props.questions.map( (question) => {
+      count += 1;
+      return (
+        <QuestionItem key={count}
+          number={count}
+          question={question.question}
+          answerType={question.answerType}
+          answer={question.answer}
+          view={this.props.route.path}/>
+      );
+    });
+    return quizIndex;
+  }
+
 	render() {
     let questionCreator = this.getQuestionCreator();
-    let quizIndex;
+    let quizIndex = this.getQuizIndex();
 		return (
       <div>
         <h2>I am the editor!</h2>

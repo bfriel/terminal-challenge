@@ -8,6 +8,12 @@ const QuestionActions = {
       answerType: attributes.answerType,
       answer: attributes.answer
     });
+  },
+
+  toggleCreate() {
+    AppDispatcher.dispatch({
+      actionType: "TOGGLE_CREATE"
+    })
   }
 };
 

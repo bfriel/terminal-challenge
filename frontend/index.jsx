@@ -9,7 +9,8 @@ class QuizApp extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			questions: []
+			questions: [],
+			creating: false
 		};
 		this._questionChange = this._questionChange.bind(this);
 	}
@@ -24,7 +25,8 @@ class QuizApp extends React.Component {
 
 	_questionChange() {
 		this.setState({
-			questions: QuestionStore.questions()
+			questions: QuestionStore.questions(),
+			creating: QuestionStore.creating()
 		});
 	}
 
@@ -38,7 +40,13 @@ class QuizApp extends React.Component {
 				<h1>Quiz App</h1>
 				<a className="view-link" onClick={() => this._handleClick("editor")}>Editor View</a>
 				<a className="view-link" onClick={() => this._handleClick("student")}>Student View</a>
-				{React.cloneElement(this.props.children, { questions: this.state.questions })}
+				{React.cloneElement(
+					this.props.children,
+					{
+						questions: this.state.questions,
+						creating: this.state.creating
+					}
+				)}
 			</div>
 		);
 	}
