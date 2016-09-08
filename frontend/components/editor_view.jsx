@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionForm from './question_form';
 
-class Editor extends React.Component {
+class EditorView extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -39,4 +39,4 @@ class Editor extends React.Component {
 	}
 }
 
-export default Editor;
+export default EditorView;

@@ -1,4 +1,5 @@
 import React from 'react';
+import QuestionActions from '../actions/question_actions.js';
 
 class QuestionForm extends React.Component {
   constructor(props){
@@ -8,13 +9,11 @@ class QuestionForm extends React.Component {
       answerType: "",
       answer: null
     };
-    // this._changeQuestion = this._changeQuestion.bind(this);
-    // this._changeType = this._changeType.bind(this);
-    // this._changeAnswer = this._changeAnswer.bind(this);
     this._handleChange = this._handleChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  _handleChange(e){
+  _handleChange(e) {
     let key = e.target.name;
     let val = e.target.value;
     let obj = {};
@@ -27,25 +26,27 @@ class QuestionForm extends React.Component {
     }
   }
 
-  // _changeQuestion(e) {
-  //   this.setState({
-  //     question: e.target.value
-  //   });
-  // }
-  //
-  // _changeType(type) {
-  //   this.setState({
-  //     answerType: type,
-  //     answer: null
-  //   });
-  // }
-  //
-  // _changeAnswer(e) {
-  //    debugger;
-  //    this.setState({
-  //     answer: e.target.value
-  //   });
-  // }
+  _handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.question === "") {
+      alert("Question cannot be blank");
+      return;
+    } else if (this.state.answerType === "") {
+      alert("Please specify the answer type");
+      return;
+    } else if (this.state.answer === null) {
+      alert("Answer cannot be blank");
+      return;
+    }
+    QuestionActions.createQuestion(
+      this.state,
+      this.setState({
+        question: "",
+        answerType: "",
+        answer: null
+      })
+    );
+  }
 
   getAnswer() {
     let answer;
@@ -55,22 +56,19 @@ class QuestionForm extends React.Component {
                   <input type="radio"
                     name="answer"
                     value={true}
-                    // onChange={this._changeAnswer}
                     onChange={this._handleChange} />True
                   <input type="radio"
                     name="answer"
                     value={false}
-                    // onChange={this._changeAnswer}
                     onChange={this._handleChange} />False
                </div>;
-    } else if (this.state.answerType === "text") {
+    } else if (this.state.answerType === "string") {
       answer = <div>
                  <label htmlFor="answer">Answer: </label>
                  <input type="text"
                    name="answer"
                    placeholder="4..."
-                  //  onChange={this._changeAnswer}
-                   onChange={this._handleChange}/>
+                   onChange={this._handleChange} />
                </div>;
     }
     return answer;
@@ -78,25 +76,21 @@ class QuestionForm extends React.Component {
 
   render() {
     let answer = this.getAnswer();
-    console.log(this.state);
     return (
-      <form>
+      <form onSubmit={this._handleSubmit}>
         <label htmlFor="question">Question: </label>
         <input type="text"
           name="question"
           placeholder="what is 2 + 2?..."
-          // onChange={this._changeQuestion}
           onChange={this._handleChange}/> <br />
         <label htmlFor="answerType">Answer Type: </label>
         <input type="radio"
           name="answerType"
-          // onChange={() => this._changeType("boolean")}
           value="boolean"
           onChange={this._handleChange}/>True/False
         <input type="radio"
           name="answerType"
-          // onChange={() => this._changeType("text")}
-          value="text"
+          value="string"
           onChange={this._handleChange}/>Text <br />
         {answer} <br />
         <input type="submit" value="Create Question" />
