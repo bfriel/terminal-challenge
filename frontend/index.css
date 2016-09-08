@@ -1,0 +1,14 @@
+.view-link {
+  margin: 5px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.button {
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+  background: lightgreen;
+  cursor: pointer;
+}
