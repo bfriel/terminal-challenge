@@ -38,7 +38,7 @@ class QuizApp extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div id="content">
 				<h1>Quiz App</h1>
 				<a className="view-link" onClick={() => this._handleClick("editor")}>Editor View</a>
 				<a className="view-link" onClick={() => this._handleClick("student")}>Student View</a>

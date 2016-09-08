@@ -1,14 +1,28 @@
+#content {
+  font-family: 'Verdana';
+  text-align: center;
+}
+
+#submit-quiz {
+  background: #69a74e;
+}
+
+input {
+  margin: 10px;
+}
+
 .view-link {
-  margin: 5px;
+  margin: 5px 20px;
   cursor: pointer;
   text-decoration: underline;
 }
 
 .button {
-  margin: 5px;
-  padding: 5px;
-  border: 1px solid black;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
   border-radius: 2px;
-  background: lightgreen;
+  color: white;
+  background: rgb(73, 153, 177);
   cursor: pointer;
 }

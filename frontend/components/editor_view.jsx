@@ -39,7 +39,7 @@ class EditorView extends React.Component {
     let quizIndex = this.getQuizIndex();
 		return (
       <div>
-        <h2>I am the editor!</h2>
+        <h2>Edit Quiz</h2>
         {questionCreator}
         {quizIndex}
       </div>

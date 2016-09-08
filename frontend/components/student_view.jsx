@@ -83,6 +83,7 @@ class StudentView extends React.Component {
                   <a className="button"
                     onClick={() => this._handleClick("previous")}>Previous</a>
                   <a className="button"
+                    id="submit-quiz"
                     onClick={() => this._handleClick("submit")}>Submit Quiz</a>
                 </div>;
     }
@@ -95,7 +96,7 @@ class StudentView extends React.Component {
     let buttons = this.getButtons();
 		return (
       <div>
-  			<h2>I am the student view!</h2>
+  			<h2>Your Quiz</h2>
         {currentQuestion}
         {buttons}
       </div>

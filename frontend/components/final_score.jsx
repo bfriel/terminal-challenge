@@ -10,8 +10,8 @@ class FinalScore extends React.Component {
     return (
       <div>
         <h5>Final Score</h5>
-        <p>Number Right: {this.props.score.numRight}</p>
-        <p>Number Wrong: {this.props.score.numWrong}</p>
+        <p>Correct Answers: {this.props.score.numRight}</p>
+        <p>Incorrect Answers: {this.props.score.numWrong}</p>
       </div>
     );
   }
