@@ -10,7 +10,8 @@ class QuizApp extends React.Component {
 		super();
 		this.state = {
 			questions: [],
-			creating: false
+			creating: false,
+			score: {}
 		};
 		this._questionChange = this._questionChange.bind(this);
 	}
@@ -20,13 +21,14 @@ class QuizApp extends React.Component {
 	}
 
 	componentWillUnmount() {
-		this.questionListener.remove();
+		this.questionsListener.remove();
 	}
 
 	_questionChange() {
 		this.setState({
 			questions: QuestionStore.questions(),
-			creating: QuestionStore.creating()
+			creating: QuestionStore.creating(),
+			score: QuestionStore.calculateScore()
 		});
 	}
 
@@ -44,7 +46,8 @@ class QuizApp extends React.Component {
 					this.props.children,
 					{
 						questions: this.state.questions,
-						creating: this.state.creating
+						creating: this.state.creating,
+						score: this.state.score
 					}
 				)}
 			</div>

@@ -14,6 +14,14 @@ const QuestionActions = {
     AppDispatcher.dispatch({
       actionType: "TOGGLE_CREATE"
     })
+  },
+
+  submitStudentAnswer(qIndex, answer) {
+    AppDispatcher.dispatch({
+      actionType: "SUBMIT_ANSWER",
+      qIndex: qIndex,
+      answer: answer,
+    });
   }
 };
 

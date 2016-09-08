@@ -1,12 +1,33 @@
 import React from 'react';
+import QuestionActions from '../actions/question_actions.js';
+import QuestionStore from '../stores/question_store.js';
 
 class QuestionItem extends React.Component {
 	constructor(props) {
-		super();
+		super(props);
+		this.state = {
+			studentAnswer: QuestionStore.studentAnswers()[this.props.number - 1]
+		};
+		this._handleChange = this._handleChange.bind(this);
+		this._questionChange = this._questionChange.bind(this);
 	}
 
-	_handleChange() {
+	componentDidMount() {
+		this.questionsListener = QuestionStore.addListener(this._questionChange);
+	}
 
+	componentWillUnmount() {
+		this.questionsListener.remove();
+	}
+
+	_questionChange() {
+		this.setState({
+			studentAnswer: QuestionStore.studentAnswers()[this.props.number - 1]
+		});
+	}
+
+	_handleChange(e) {
+		QuestionActions.submitStudentAnswer(this.props.number - 1, e.target.value);
 	}
 
 	toggleAnswer() {
@@ -29,6 +50,7 @@ class QuestionItem extends React.Component {
 			} else if (this.props.answerType === "string") {
 				userInput = <input type="text"
 											name="answer"
+											value={this.state.studentAnswer}
 											onChange={this._handleChange} />;
 			}
 			answer =  <form>
