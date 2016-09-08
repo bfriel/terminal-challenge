@@ -27,13 +27,19 @@ class QuestionItem extends React.Component {
 	}
 
 	_handleChange(e) {
-		QuestionActions.submitStudentAnswer(this.props.number - 1, e.target.value);
+		let value = e.target.value;
+		if (e.target.type === "radio" && value === "true") {
+			value = true;
+		} else if (e.target.type === "radio" && value === "false") {
+			value = false;
+		}
+		QuestionActions.submitStudentAnswer(this.props.number - 1, value);
 	}
 
 	toggleAnswer() {
 		let answer;
 		if (this.props.view === "editor") {
-			answer = <p>A: {this.props.answer}</p>;
+			answer = <p>A: {this.props.answer.toString()}</p>;
 		} else if (this.props.view === "student") {
 			let userInput;
 			if (this.props.answerType === "boolean") {
@@ -41,10 +47,12 @@ class QuestionItem extends React.Component {
 											<input type="radio"
 												name="answer"
 												value={true}
+												checked={this.state.studentAnswer === true}
 												onChange={this._handleChange} />True
 											<input type="radio"
 												name="answer"
 												value={false}
+												checked={this.state.studentAnswer === false}
 												onChange={this._handleChange} />False
 										</span>;
 			} else if (this.props.answerType === "string") {

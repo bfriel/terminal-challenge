@@ -7,7 +7,7 @@ class QuestionForm extends React.Component {
     this.state = {
       question: "",
       answerType: "",
-      answer: null
+      answer: ""
     };
     this._handleChange = this._handleChange.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -16,12 +16,17 @@ class QuestionForm extends React.Component {
   _handleChange(e) {
     let key = e.target.name;
     let val = e.target.value;
+    if (e.target.type === "radio" && val === "true") {
+      val = true;
+    } else if (e.target.type === "radio" && val === "false") {
+      val = false;
+    }
     let obj = {};
     obj[key] = val;
     this.setState(obj);
     if (key === "answerType") {
       this.setState({
-        answer: null
+        answer: ""
       });
     }
   }
@@ -34,7 +39,7 @@ class QuestionForm extends React.Component {
     } else if (this.state.answerType === "") {
       alert("Please specify the answer type");
       return;
-    } else if (this.state.answer === null) {
+    } else if (this.state.answer === "") {
       alert("Answer cannot be blank");
       return;
     }
@@ -67,6 +72,7 @@ class QuestionForm extends React.Component {
                  <label htmlFor="answer">Answer: </label>
                  <input type="text"
                    name="answer"
+                   value={this.state.answer}
                    placeholder="4..."
                    onChange={this._handleChange} />
                </div>;
