@@ -99,7 +99,7 @@ class QuestionForm extends React.Component {
           value="string"
           onChange={this._handleChange}/>Text <br />
         {answer} <br />
-        <input type="submit" value="Create Question" />
+      <input type="submit" className="button submit" value="Create Question" />
       </form>
     );
   }

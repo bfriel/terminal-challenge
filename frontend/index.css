@@ -3,10 +3,6 @@
   text-align: center;
 }
 
-#submit-quiz {
-  background: #69a74e;
-}
-
 input {
   margin: 10px;
 }
@@ -21,8 +17,13 @@ input {
   display: inline-block;
   margin: 10px;
   padding: 10px;
-  border-radius: 2px;
-  color: white;
   background: rgb(73, 153, 177);
+  border-radius: 2px;
+  font-size: 16px;
+  color: white;
   cursor: pointer;
+}
+
+.submit {
+  background: #69a74e;
 }

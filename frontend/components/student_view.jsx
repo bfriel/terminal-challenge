@@ -77,13 +77,12 @@ class StudentView extends React.Component {
                     onClick={() => this._handleClick("next")}>Next</a>
                 </div>;
     } else if (currentIndex === 0 && questionsLength === 1) {
-      buttons = <a className="button" onClick={() => this._handleClick("submit")}>Submit</a>;
+      buttons = <a className="button submit" onClick={() => this._handleClick("submit")}>Submit Quiz</a>;
     } else {
       buttons = <div>
                   <a className="button"
                     onClick={() => this._handleClick("previous")}>Previous</a>
-                  <a className="button"
-                    id="submit-quiz"
+                  <a className="button submit"
                     onClick={() => this._handleClick("submit")}>Submit Quiz</a>
                 </div>;
     }
