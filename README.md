@@ -11,5 +11,4 @@ All data is stored in memory and will disappear on refresh.
 1. Open up your terminal and navigate to this directory (cd terminal-challenge)
 2. Install dependencies (npm install)
 3. Run webpack -w (webpack -w)
-4. In a new terminal tab, navigate to the frontend folder (cd frontend)
-5. Run open index.html (open index.html)
+4. In a new terminal tab, open the index.html file (open index.html)
